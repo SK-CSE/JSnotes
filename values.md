@@ -195,3 +195,152 @@ var a = 42;
 
 console.log( void a, a ); // undefined 42
 ```
+## Special Values
+
+There are several special values spread across the various types that the *alert* JS developer needs to be aware of, and use properly.
+
+### The Non-value Values
+
+For the `undefined` type, there is one and only one value: `undefined`. For the `null` type, there is one and only one value: `null`. So for both of them, the label is both its type and its value.
+
+Both `undefined` and `null` are often taken to be interchangeable as either "empty" values or "non" values.
+
+* `null` is an empty value
+* `undefined` is a missing value
+
+Or:
+
+* `undefined` hasn't had a value yet
+* `null` had a value and doesn't anymore
+
+`null` is a special keyword, not an identifier, and thus you cannot treat it as a variable to assign to (why would you!?). However, `undefined` *is* (unfortunately) an identifier. Uh oh.
+
+### Undefined
+
+In non-`strict` mode, it's actually possible (though incredibly ill-advised!) to assign a value to the globally provided `undefined` identifier:
+
+```js
+function foo() {
+	undefined = 2; // really bad idea!
+}
+
+foo();
+```
+
+```js
+function foo() {
+	"use strict";
+	undefined = 2; // TypeError!
+}
+
+foo();
+```
+
+In both non-`strict` mode and `strict` mode, however, you can create a local variable of the name `undefined`. But again, this is a terrible idea!
+
+```js
+function foo() {
+	"use strict";
+	var undefined = 2;
+	console.log( undefined ); // 2
+}
+
+foo();
+```
+#### `void` Operator
+
+While `undefined` is a built-in identifier that holds the built-in `undefined` value, another way to get this value is the `void` operator.
+
+The expression `void ___` "voids" out any value, so that the result of the expression is always the `undefined` value. It doesn't modify the existing value; it just ensures that no value comes back from the operator expression.
+
+```js
+var a = 42;
+
+console.log( void a, a ); // undefined 42
+```
+### Special Numbers
+
+
+`NaN` literally stands for "not a `number`", though this label/description is very poor and misleading, as we'll see shortly. It would be much more accurate to think of `NaN` as being "invalid number," "failed number," or even "bad number," than to think of it as "not a number."
+
+For example:
+
+```js
+var a = 2 / "foo";		// NaN
+
+typeof a === "number";	// true
+```
+
+In other words: "the type of not-a-number is 'number'!".
+
+`NaN` is a kind of "sentinel value"that represents a special kind of error condition within the `number` set. The error condition is, in essence: "I tried to perform a mathematic operation but failed, so here's the failed `number` result instead."
+
+```js
+var a = 2 / "foo";
+
+a == NaN;	// false
+a === NaN;	// false
+isNaN( a ); // true
+```
+
+`NaN` is a very special value in that it's never equal to another `NaN` value
+
+#### Infinities
+However, in JS, this operation is well-defined and results in the value `Infinity` (aka `Number.POSITIVE_INFINITY`). Unsurprisingly:
+
+```js
+var a = 1 / 0;	// Infinity
+var b = -1 / 0;	// -Infinity
+var a = Number.MAX_VALUE;	// 1.7976931348623157e+308
+a + a;						// Infinity
+a + Math.pow( 2, 970 );		// Infinity
+a + Math.pow( 2, 969 );		// 1.7976931348623157e+308
+```
+#### Zeros
+
+```js
+var a = 0 / -3; // -0
+var b = 0 * -3; // -0
+
+a.toString();				// "0"
+a + "";						// "0"
+String( a );				// "0"
+
+// strangely, even JSON gets in on the deception
+JSON.stringify( a );		// "0"
+
+a == b;		// true
+-0 == 0;	// true
+
+a === b;	// true
+-0 === 0;	// true
+
+0 > -0;		// false
+a > b;		// false
+```
+### Value vs. Reference
+```js
+var a = 2;
+var b = a; // `b` is always a copy of the value in `a`
+b++;
+a; // 2
+b; // 3
+
+var c = [1,2,3];
+var d = c; // `d` is a reference to the shared `[1,2,3]` value
+d.push( 4 );
+c; // [1,2,3,4]
+d; // [1,2,3,4]
+```
+
+```js
+var a = [1,2,3];
+var b = a;
+a; // [1,2,3]
+b; // [1,2,3]
+
+// later
+b = [4,5,6];
+a; // [1,2,3]
+b; // [4,5,6]
+```
