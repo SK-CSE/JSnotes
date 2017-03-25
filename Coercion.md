@@ -20,8 +20,8 @@ JSON.stringify( { a:2, b:function(){} } );		// "{"a":2}"
 var a = 42;
 var b = "42";
 
-a === b;	// false
-a == b;		// true
+console.log(a === b);	// false
+console.log(a == b);		// true
 ```
 ***************
 
@@ -46,20 +46,20 @@ console.log(b === undefined); // true
 var a = 42;
 var b = [ 42 ];
 
-a == b;	// true
+console.log(a == b);	// true
 ```
 ```js
 var a = "abc";
 var b = Object( a );	// same as `new String( a )`
 
-a === b;				// false
-a == b;					// true
+console.log(a === b);				// false
+console.log(a == b);					// true
 ```
 
 ```js
 var a = null;
 var b = Object( a );	// same as `Object()`
-a == b;					// false
+console.log(a == b);					// false
 
 var c = undefined;
 var d = Object( c );	// same as `Object()`
