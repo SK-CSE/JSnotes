@@ -81,12 +81,12 @@ console.log(b === undefined); // false
 #### False-y Comparisons
 
 ```js
-"0" == null;			// false
-"0" == undefined;		// false
-"0" == false;			// true -- UH OH!
-"0" == NaN;				// false
-"0" == 0;				// true
-"0" == "";				// false
+console.log("0" == null);			// false
+console.log("0" == undefined);		// false
+console.log("0" == false);			// true -- UH OH!
+console.log("0" == NaN);				// false
+console.log("0" == 0);				// true
+console.log("0" == "");				// false
 
 false == null;			// false
 false == undefined;		// false
