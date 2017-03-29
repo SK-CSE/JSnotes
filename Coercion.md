@@ -88,13 +88,13 @@ console.log("0" == NaN);				// false
 console.log("0" == 0);				// true
 console.log("0" == "");				// false
 
-false == null;			// false
-false == undefined;		// false
-false == NaN;			// false
-false == 0;				// true -- UH OH!
-false == "";			// true -- UH OH!
-false == [];			// true -- UH OH!
-false == {};			// false
+console.log(false == null);			// false
+console.log(false == undefined);		// false
+console.log(false == NaN);			// false
+console.log(false == 0);				// true -- UH OH!
+console.log(false == "");			// true -- UH OH!
+console.log(false == []);			// true -- UH OH!
+console.log(false == {});			// false
 
 "" == null;				// false
 "" == undefined;		// false
