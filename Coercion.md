@@ -96,12 +96,12 @@ console.log(false == "");			// true -- UH OH!
 console.log(false == []);			// true -- UH OH!
 console.log(false == {});			// false
 
-"" == null;				// false
-"" == undefined;		// false
-"" == NaN;				// false
-"" == 0;				// true -- UH OH!
-"" == [];				// true -- UH OH!
-"" == {};				// false
+console.log("" == null);				// false
+console.log("" == undefined);		// false
+console.log("" == NaN);				// false
+console.log("" == 0);				// true -- UH OH!
+console.log("" == []);				// true -- UH OH!
+console.log("" == {});				// false
 
 0 == null;				// false
 0 == undefined;			// false
