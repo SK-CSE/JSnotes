@@ -47,3 +47,5 @@ var b = a + ""; // `b` has the unboxed primitive value "abc"
 typeof a; // "object"
 typeof b; // "string"
 ```
+#####
+http://garyrafferty.com/2012/12/07/JavaScript-instanceof-vs-typeof.html
