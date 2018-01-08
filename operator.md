@@ -38,7 +38,7 @@ But when A is an array we have a different sitiuation. Not only will C change, b
 ```js
 var A = [2, 1];
 var C = A;
-console.log(C); // [1, 2]
+console.log(C); // [2, 1]
 A.sort();
 console.log(C); // [1, 2]
 ```
